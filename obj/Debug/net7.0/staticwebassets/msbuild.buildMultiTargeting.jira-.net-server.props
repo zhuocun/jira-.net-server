@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../build/jira-.net-server.props" />
+</Project>
