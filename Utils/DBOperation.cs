@@ -11,34 +11,34 @@ namespace jira_.net_server.Utils.Database
             _dbUtils = dbUtils;
         }
 
-        public Task<JObject?> FindOne(Dictionary<string, object> reqBody, string tableName)
+        public Task<JObject?> FindOneAsync(Dictionary<string, object> reqBody, string tableName)
         {
-            return _dbUtils.FindOne<JObject>(reqBody, tableName);
+            return _dbUtils.FindOneAsync<JObject>(reqBody, tableName);
         }
 
-        public Task CreateItem<T>(T item, string tableName)
+        public Task CreateItemAsync<T>(T item, string tableName)
         {
-            return _dbUtils.CreateItem(item, tableName);
+            return _dbUtils.CreateItemAsync(item, tableName);
         }
 
-        public Task<List<JObject>> Find(Dictionary<string, object> reqBody, string tableName)
+        public Task<List<JObject>> FindAsync(Dictionary<string, object> reqBody, string tableName)
         {
-            return _dbUtils.Find<JObject>(reqBody, tableName);
+            return _dbUtils.FindAsync<JObject>(reqBody, tableName);
         }
 
-        public Task<JObject> FindById(string id, string tableName)
+        public Task<JObject> FindByIdAsync(string id, string tableName)
         {
-            return _dbUtils.FindById<JObject>(id, tableName);
+            return _dbUtils.FindByIdAsync<JObject>(id, tableName);
         }
 
-        public Task<JObject> FindByIdAndDelete(string id, string tableName)
+        public Task<JObject> FindByIdAndDeleteAsync(string id, string tableName)
         {
-            return _dbUtils.FindByIdAndDelete<JObject>(id, tableName);
+            return _dbUtils.FindByIdAndDeleteAsync<JObject>(id, tableName);
         }
 
-        public Task<JObject> FindByIdAndUpdate(string id, JObject update, string tableName)
+        public Task<JObject> FindByIdAndUpdateAsync(string id, JObject update, string tableName)
         {
-            return _dbUtils.FindByIdAndUpdate<JObject>(id, update, tableName);
+            return _dbUtils.FindByIdAndUpdateAsync<JObject>(id, update, tableName);
         }
     }
 }

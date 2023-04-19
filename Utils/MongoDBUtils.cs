@@ -11,13 +11,13 @@ public class MongoDBUtils : IDBUtils
         _database = database;
     }
 
-    public async Task CreateItem<T>(T item, string tableName)
+    public async Task CreateItemAsync<T>(T item, string tableName)
     {
         var collection = _database.GetCollection<T>(tableName);
         await collection.InsertOneAsync(item);
     }
 
-    public async Task<T?> FindOne<T>(Dictionary<string, object> reqBody, string tableName)
+    public async Task<T?> FindOneAsync<T>(Dictionary<string, object> reqBody, string tableName)
     {
         var collection = _database.GetCollection<T>(tableName);
 
@@ -39,7 +39,7 @@ public class MongoDBUtils : IDBUtils
         else return result[0];
     }
 
-    public async Task<List<T>> Find<T>(Dictionary<string, object> reqBody, string tableName)
+    public async Task<List<T>> FindAsync<T>(Dictionary<string, object> reqBody, string tableName)
     {
         var collection = _database.GetCollection<T>(tableName);
 
@@ -57,7 +57,7 @@ public class MongoDBUtils : IDBUtils
         return result;
     }
 
-    public async Task<T> FindById<T>(string id, string tableName)
+    public async Task<T> FindByIdAsync<T>(string id, string tableName)
     {
         var collection = _database.GetCollection<T>(tableName);
         var filter = Builders<T>.Filter.Eq("_id", id);
@@ -66,7 +66,7 @@ public class MongoDBUtils : IDBUtils
         return result;
     }
 
-    public async Task<T> FindByIdAndUpdate<T>(string id, T update, string tableName)
+    public async Task<T> FindByIdAndUpdateAsync<T>(string id, T update, string tableName)
     {
         if (update == null)
         {
@@ -91,7 +91,7 @@ public class MongoDBUtils : IDBUtils
         return result;
     }
 
-    public async Task<T> FindByIdAndDelete<T>(string id, string tableName)
+    public async Task<T> FindByIdAndDeleteAsync<T>(string id, string tableName)
     {
         var collection = _database.GetCollection<T>(tableName);
 

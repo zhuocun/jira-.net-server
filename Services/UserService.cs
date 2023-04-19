@@ -8,14 +8,14 @@ public class UserService : IUserService
         _utils = _factory.GetDBUtils(EDBType.MongoDB);
     }
 
-    public async Task<User> Get(string userId)
+    public async Task<User> GetAsync(string userId)
     {
-        return await _utils.FindById<User>(userId, "users");
+        return await _utils.FindByIdAsync<User>(userId, "users");
     }
 
-    public async Task<List<User>> GetMembers()
+    public async Task<List<User>> GetMembersAsync()
     {
-        var res = await _utils.Find<User>(new Dictionary<string, object> { { "username", "John" } }, "users");
+        var res = await _utils.FindAsync<User>(new Dictionary<string, object> { { "username", "John" } }, "users");
         return res;
     }
 }

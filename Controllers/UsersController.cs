@@ -17,7 +17,7 @@ public class UsersController : ControllerBase
     {
         try
         {
-            var user = await _userService.Get(userId);
+            var user = await _userService.GetAsync(userId);
 
             if (user == null)
             {
@@ -38,7 +38,7 @@ public class UsersController : ControllerBase
     {
         try
         {
-            var users = await _userService.GetMembers();
+            var users = await _userService.GetMembersAsync();
 
             if (users == null)
             {
