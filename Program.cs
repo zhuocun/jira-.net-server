@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration["DBType"] = Environment.GetEnvironmentVariable("DB_TYPE") == "PostgreSQL" ? "PostgreSQL" : "MongoDB";
 
 // Register services
-Service.RegisterServices(builder);
+Service.Register(builder);
 
 var app = builder.Build();
 

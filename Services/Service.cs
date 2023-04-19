@@ -3,7 +3,7 @@ using jira_.net_server.Services;
 
 public static class Service
 {
-    public static void RegisterServices(WebApplicationBuilder builder)
+    public static void Register(WebApplicationBuilder builder)
     {
         var mongoDbConnectionString = builder.Configuration["MONGODB_CONNECTION_STRING"];
         var databaseName = builder.Configuration["MONGODB_DATABASE_NAME"];
