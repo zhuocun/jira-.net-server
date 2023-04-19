@@ -2,18 +2,20 @@ namespace jira_.net_server.Services;
 
 public class UserService : IUserService
 {
-    public User GetUser(int userId)
+    private readonly IDBUtils _utils;
+    public UserService(DBUtilsFactory _factory)
     {
-        return new User(userId, "John", "Doe", "   ");
+        _utils = _factory.GetDBUtils(EDBType.MongoDB);
     }
 
-    public IEnumerable<User> GetAllUsers()
+    public async Task<User> Get(string userId)
     {
-        return new List<User>
-        {
-            new User(1, "John", "Doe", "   "),
-            new User(2, "Jane", "Doe", "   ")
-        };
+        return await _utils.FindById<User>(userId, "users");
     }
 
+    public async Task<List<User>> GetMembers()
+    {
+        var res = await _utils.Find<User>(new Dictionary<string, object> { { "username", "John" } }, "users");
+        return res;
+    }
 }

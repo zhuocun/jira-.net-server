@@ -2,22 +2,22 @@ using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
 [Route("api/[controller]")]
-public class UserController : ControllerBase
+public class UsersController : ControllerBase
 {
     private readonly IUserService _userService;
 
-    public UserController(IUserService userService)
+    public UsersController(IUserService userService)
     {
         _userService = userService;
     }
 
-    // GET: api/user/1
+    // GET: api/users/1
     [HttpGet("{userId}")]
-    public IActionResult GetUser(int userId)
+    public async Task<IActionResult> Get(string userId)
     {
         try
         {
-            var user = _userService.GetUser(userId);
+            var user = await _userService.Get(userId);
 
             if (user == null)
             {
@@ -28,18 +28,17 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            // Log the exception or perform additional error handling
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
 
-    // GET: api/user
+    // GET: api/users
     [HttpGet]
-    public IActionResult GetAllUsers()
+    public async Task<IActionResult> Get()
     {
         try
         {
-            var users = _userService.GetAllUsers();
+            var users = await _userService.GetMembers();
 
             if (users == null)
             {
@@ -50,8 +49,8 @@ public class UserController : ControllerBase
         }
         catch (Exception ex)
         {
-            // Log the exception or perform additional error handling
             return StatusCode(500, $"An error occurred: {ex.Message}");
         }
     }
+
 }

@@ -1,28 +1,18 @@
-using jira_.net_server.Services; // Add the namespace where IUserService and UserService are defined
+using DotNetEnv;
+
+Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddScoped<IUserService, UserService>(); // Register the IUserService and UserService
+// Set the database type based on the environment variable
+builder.Configuration["DBType"] = Environment.GetEnvironmentVariable("DB_TYPE") == "PostgreSQL" ? "PostgreSQL" : "MongoDB";
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+// Register services
+Service.RegisterServices(builder);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+// Configure the middleware pipeline
+Middleware.Configure(app, app.Environment.IsDevelopment());
 
 app.Run();
