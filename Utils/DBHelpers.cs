@@ -12,4 +12,14 @@ public static class DBHelpers
         };
     }
 
+    public static Enum GetDBType(String dbType)
+    {
+        return dbType switch
+        {
+            "mongoDB" => EDBType.MongoDB,
+            "postgreSQL" => EDBType.PostgreSQL,
+            _ => throw new ArgumentOutOfRangeException(nameof(dbType), $"Invalid database type: {dbType}"),
+        };
+    }
+
 }

@@ -4,11 +4,15 @@ public class DBUtilsFactory
     public static IDBUtils? CreateDBUtils(WebApplicationBuilder builder)
     {
         string? dbType = Environment.GetEnvironmentVariable("DB_TYPE");
-        switch (dbType)
+        if (dbType == null)
         {
-            case "PostgreSQL":
+            throw new Exception("Missing DB_TYPE environment variable");
+        }
+        switch (DBHelpers.GetDBType(dbType))
+        {
+            case EDBType.PostgreSQL:
                 break;
-            case "MongoDB":
+            case EDBType.MongoDB:
                 string? mongoDbConnectionString = builder.Configuration["MONGODB_CONNECTION_STRING"];
                 string? databaseName = builder.Configuration["MONGODB_DATABASE_NAME"];
                 if (mongoDbConnectionString == null || databaseName == null)
@@ -23,8 +27,6 @@ public class DBUtilsFactory
                 }
                 Console.WriteLine($"Connect to {dbType} successfully");
                 return new MongoDBUtils(context);
-            case "DynamoDB":
-                break;
             default:
                 throw new Exception("Invalid database type specified in configuration");
         }
