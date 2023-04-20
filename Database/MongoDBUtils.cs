@@ -34,7 +34,7 @@ public class MongoDBUtils : IDBUtils
 
         if (result.Count == 0)
         {
-            return default(T); ;
+            return default(T);
         }
         else return result[0];
     }
