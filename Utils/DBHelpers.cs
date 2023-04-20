@@ -1,6 +1,6 @@
 public static class DBHelpers
 {
-    public static string GetCollectionName(ETableName tableName)
+    public static string GetTableName(ETableName tableName)
     {
         return tableName switch
         {

@@ -3,7 +3,7 @@ namespace jira_.net_server.Services;
 public class UserService : IUserService
 {
     private readonly IDBUtils _utils;
-    private readonly string TABLE_NAME = DBHelpers.GetCollectionName(ETableName.User);
+    private readonly string TABLE_NAME = DBHelpers.GetTableName(ETableName.User);
     public UserService(IDBUtils utils)
     {
         _utils = utils;
