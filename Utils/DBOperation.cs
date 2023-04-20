@@ -26,7 +26,7 @@ public class DBOperation
         return _dbUtils.FindAsync<JObject>(reqBody, tableName);
     }
 
-    public Task<JObject> FindByIdAsync(string id, string tableName)
+    public Task<JObject?> FindByIdAsync(string id, string tableName)
     {
         return _dbUtils.FindByIdAsync<JObject>(id, tableName);
     }

@@ -9,7 +9,7 @@ public class UserService : IUserService
         _utils = utils;
     }
 
-    public async Task<User> GetAsync(string userId)
+    public async Task<User?> GetAsync(string userId)
     {
         return await _utils.FindByIdAsync<User>(userId, TABLE_NAME);
     }

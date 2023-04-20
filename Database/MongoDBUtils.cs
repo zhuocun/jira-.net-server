@@ -57,7 +57,7 @@ public class MongoDBUtils : IDBUtils
         return result;
     }
 
-    public async Task<T> FindByIdAsync<T>(string id, string tableName)
+    public async Task<T?> FindByIdAsync<T>(string id, string tableName)
     {
         var collection = _database.GetCollection<T>(tableName);
         var filter = Builders<T>.Filter.Eq("_id", id);
