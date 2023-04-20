@@ -16,9 +16,4 @@ public class MongoDBContext
     {
         return _database.GetCollection<T>(collectionName);
     }
-
-    public IMongoDatabase GetDatabase()
-    {
-        return _database;
-    }
 }

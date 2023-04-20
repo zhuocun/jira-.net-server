@@ -3,19 +3,20 @@ namespace jira_.net_server.Services;
 public class UserService : IUserService
 {
     private readonly IDBUtils _utils;
-    public UserService(DBUtilsFactory _factory)
+    private readonly string TABLE_NAME = DBHelpers.GetCollectionName(ETableName.User);
+    public UserService(IDBUtils utils)
     {
-        _utils = _factory.GetDBUtils(EDBType.MongoDB);
+        _utils = utils;
     }
 
     public async Task<User> GetAsync(string userId)
     {
-        return await _utils.FindByIdAsync<User>(userId, "users");
+        return await _utils.FindByIdAsync<User>(userId, TABLE_NAME);
     }
 
     public async Task<List<User>> GetMembersAsync()
     {
-        var res = await _utils.FindAsync<User>(new Dictionary<string, object> { { "username", "John" } }, "users");
+        var res = await _utils.FindAsync<User>(new Dictionary<string, object> { { "username", "John" } }, TABLE_NAME);
         return res;
     }
 }

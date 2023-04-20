@@ -1,4 +1,4 @@
-public static class Helpers
+public static class DBHelpers
 {
     public static string GetCollectionName(ETableName tableName)
     {
