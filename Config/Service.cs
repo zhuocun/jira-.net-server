@@ -1,4 +1,3 @@
-using jira_.net_server.Data;
 using jira_.net_server.Services;
 
 public static class Service

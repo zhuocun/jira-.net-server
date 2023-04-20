@@ -3,7 +3,7 @@ public class DBUtilsFactory
 {
     public static IDBUtils? CreateDBUtils(WebApplicationBuilder builder)
     {
-        string? dbType = builder.Configuration["DBType"];
+        string? dbType = Environment.GetEnvironmentVariable("DB_TYPE");
         switch (dbType)
         {
             case "PostgreSQL":
